@@ -9,7 +9,10 @@ INSTRUCTIONS:
 */
 
 //You can uncomment the console.log code to check if your js file is connected with html file or not.
-//console.log("%cJS Lab Connected — Start completing the TODOs for Advance JavaScript!", "font-weight:bold; font-size:14px");
+console.log(
+  "%cJS Lab Connected — Start completing the TODOs for Advance JavaScript!",
+  "font-weight:bold; font-size:14px"
+);
 
 // ==========================
 // TODO-1: OBJECT with GETTERS & SETTERS
@@ -21,7 +24,23 @@ Task:
 3) Add a setter updateGpa(newGpa) or use a set accessor for gpa that validates 0.0–4.0.
 4) Create an instance/object and output its attributes using the getter(s).
 */
-
+const student = {
+  firstName: "Abdulmalik",
+  lastName: "Alsafadi",
+  _gpa: 3.8,
+  get fullName() {
+    return this.firstName + " " + this.lastName;
+  },
+  get gpa() {
+    return this._gpa;
+  },
+  set updateGpa(value) {
+    if (value >= 0 && value <= 4) {
+      this._gpa = value;
+    }
+  },
+};
+console.log(student.fullName);
 // ====================================
 // TODO-2: OBJECT AS MAP + for...in LOOP
 // ====================================
@@ -30,6 +49,14 @@ Task:
 1) Make an object used as a "map" (key → value), e.g., course codes → titles.
 2) Iterate over it with for...in and display each key and value.
 */
+const couresTitles = {
+  ICS104: "INTRO PYTHON",
+  ICS108: "JAVA",
+  SWE363: "WEB",
+};
+for (const key in couresTitles) {
+  console.log("The title of " + key + ": " + couresTitles[key]);
+}
 
 // =========================================
 // TODO-3: STRING OBJECT — charAt() & length
@@ -39,7 +66,9 @@ Task:
 1) Create a String object or plain string.
 2) Use .charAt(index) and .length to output characters and size.
 */
-
+const str = "Hi";
+console.log(str.length);
+console.log(str.charAt(0));
 // ===================================
 // TODO-4: DATE — day, month, and year
 // ===================================
@@ -49,7 +78,10 @@ Task:
 2) Find and display the current day of month, month (0–11), and year.
 //    (Hint: getDate(), getMonth(), getFullYear() )
 */
-
+const d = new Date();
+console.log(d.getDate());
+console.log(d.getMonth());
+console.log(d.getFullYear());
 // ============================================================
 // TODO-5: ARRAY + SPREAD — find MIN and MAX from 10 numbers
 // ============================================================
@@ -59,7 +91,11 @@ Task:
 2) Use spread syntax with Math.min(...) and Math.max(...) to find extremes.
 3) Display both values.
 */
-
+const numberArray = [1, 4, 7, 12, 343, 232, 56, 32, 21, 34];
+const max = Math.max(...numberArray);
+const min = Math.min(...numberArray);
+console.log(max);
+console.log(min);
 // ===================================================================
 // TODO-6: EXCEPTIONS — try/catch/finally with EMPTY ARRAY edge case
 // ===================================================================
@@ -70,7 +106,21 @@ Task:
 3) Handle the error using try { ... } catch (e) { ... } finally { ... } and log messages
    in each block so you can see the flow of control.
 */
-
+function maximumElement(arr) {
+  if (!Array.isArray(arr) || arr.length === 0) {
+    throw new Error("The input must be array and non-empty!");
+  }
+  return Math.max(...arr);
+}
+try {
+  let arr = [];
+  let maxElement = maximumElement(arr);
+  console.log(maxElement);
+} catch (e) {
+  console.log("There is an error happened: " + e);
+} finally {
+  console.log("End of the block");
+}
 // ===================================================================================
 // TODO-7: REGEX + forEach — find words containing 'ab' and log matches from the list
 // ===================================================================================
@@ -82,5 +132,11 @@ Given: const words = ["ban", "babble", "make", "flab"];
 3) For matches, log "<word> matches!".
 4) Display the words that matches the pattern.
 */
-
+const words = ["ban", "babble", "make", "flab"];
+const reg = /ab/;
+words.forEach((value) => {
+  if (reg.test(value)) {
+    console.log("<" + value + ">" + " matches!");
+  }
+});
 // End of Advance JavaScript Lab — good luck!
